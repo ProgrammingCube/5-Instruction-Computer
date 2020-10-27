@@ -387,10 +387,13 @@
     <property name="geometry">
      <rect>
       <x>510</x>
-      <y>310</y>
+      <y>340</y>
       <width>70</width>
       <height>17</height>
      </rect>
+    </property>
+    <property name="autoFillBackground">
+     <bool>false</bool>
     </property>
     <property name="text">
      <string>inc</string>
@@ -403,7 +406,7 @@
     <property name="geometry">
      <rect>
       <x>510</x>
-      <y>330</y>
+      <y>360</y>
       <width>70</width>
       <height>17</height>
      </rect>
@@ -419,7 +422,7 @@
     <property name="geometry">
      <rect>
       <x>510</x>
-      <y>350</y>
+      <y>380</y>
       <width>70</width>
       <height>17</height>
      </rect>
@@ -435,7 +438,7 @@
     <property name="geometry">
      <rect>
       <x>510</x>
-      <y>370</y>
+      <y>400</y>
       <width>70</width>
       <height>17</height>
      </rect>
@@ -451,7 +454,7 @@
     <property name="geometry">
      <rect>
       <x>510</x>
-      <y>390</y>
+      <y>420</y>
       <width>70</width>
       <height>17</height>
      </rect>

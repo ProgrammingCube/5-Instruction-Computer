@@ -30,6 +30,9 @@ def parseCode(self):
     boxList.append(self.iszBox)
     boxList.append(self.jmpBox)
     boxList.append(self.stpBox)
+
+    boxCounter = 0
+
     while (pc < lines):
         currentLine = self.codeEdit.document().findBlockByLineNumber(pc).text()
         currentLine = currentLine.lstrip()  #remove leading whitespaces
@@ -41,6 +44,13 @@ def parseCode(self):
         #parse the opcode.
         #because it is like only 5 instructions,
         #I'm not sweating good coding practice here.
+        boxList[boxCounter].setStyleSheet(
+            "QCheckBox::indicator"
+                               "{"
+                               "background-color : white;"
+                               "}"
+        )
+        QApplication.processEvents()
         if tokens[0] ==  "inc":
             try:
                 reg = registers.index(tokens[1])
@@ -57,6 +67,7 @@ def parseCode(self):
                 break
             tempreg = tempreg + 1
             regText[reg].setText(str(tempreg))
+            boxCounter = 0
             pc += 1
 
         elif tokens[0] ==  "dec":
@@ -79,6 +90,7 @@ def parseCode(self):
                 err = True
                 break
             regText[reg].setText(str(tempreg))
+            boxCounter = 1
             pc += 1
         
         elif tokens[0] ==  "jmp":
@@ -88,6 +100,7 @@ def parseCode(self):
                 self.codeStatus.setText('NONINT PC')
                 err = True
                 break
+            boxCounter = 3
 
         elif tokens[0] ==  "isz":
             try:
@@ -107,13 +120,20 @@ def parseCode(self):
                 pc += 2
             else:
                 pc += 1
+            boxCounter = 2
 
         elif tokens[0] ==  "stp":
+            boxCounter = 4
             break
 
         self.instructionBox.setText(tokens[0] + ' ' + tokens[1])
+        boxList[boxCounter].setStyleSheet(
+            "QCheckBox::indicator"
+                               "{"
+                               "background-color : lightgreen;"
+                               "}"
+        )
         QApplication.processEvents()
-        #time.sleep(0.1)
         time.sleep(int(self.currentSpeed.text())/1000)
 
 class mainWindow(QtWidgets.QMainWindow, form_class):
