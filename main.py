@@ -133,6 +133,11 @@ def parseCode(self):
                                "background-color : lightgreen;"
                                "}"
         )
+
+        if self.stop:
+            self.stop = False
+            break
+
         QApplication.processEvents()
         time.sleep(int(self.currentSpeed.text())/1000)
 
@@ -147,6 +152,8 @@ class mainWindow(QtWidgets.QMainWindow, form_class):
         self.speedSlider.setSingleStep(10)
         self.speedSlider.valueChanged[int].connect(self.speedChange)
 
+        self.stop = False
+
         self.initUI()
     
     def initUI(self):
@@ -156,12 +163,14 @@ class mainWindow(QtWidgets.QMainWindow, form_class):
     @pyqtSlot()
     def start_clicked(self):
         print('Running...')
+        self.stop = False
         parseCode(self)
         if err == True:
             self.codeStatus.setText("Done!")
     
     def stop_clicked(self):
         print('stopping code...')
+        self.stop = True
     
     def step_clicked(self):
         print('Stepping...')
