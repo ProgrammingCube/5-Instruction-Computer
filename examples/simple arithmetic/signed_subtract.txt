@@ -1,0 +1,17 @@
+isz a
+jmp 5
+isz b
+jmp 11
+stp
+isz b
+jmp 8
+stp
+dec a
+dec b
+jmp 0
+inc x
+dec b
+inc a
+isz b
+jmp 12
+stp

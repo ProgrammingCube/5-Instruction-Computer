@@ -1,0 +1,6 @@
+isz a
+stp
+isz b
+stp
+inc x
+stp

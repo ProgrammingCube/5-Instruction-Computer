@@ -1,0 +1,20 @@
+isz b
+jmp 3
+stp
+dec b
+isz a
+jmp 7
+jmp 11
+dec a
+inc c
+inc d
+jmp 4
+isz b
+jmp 14
+stp
+isz d
+jmp 17
+jmp 0
+dec d
+inc a
+jmp 14

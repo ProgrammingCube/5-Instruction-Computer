@@ -1,0 +1,3 @@
+inc a
+dec a
+jmp 0

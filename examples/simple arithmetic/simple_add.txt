@@ -1,0 +1,6 @@
+isz b
+jmp 3
+stp
+dec b
+inc a
+jmp 0

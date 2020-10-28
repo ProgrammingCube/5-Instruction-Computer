@@ -1,0 +1,7 @@
+isz a
+jmp 5
+isz b
+jmp 5
+stp
+inc x
+stp
