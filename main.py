@@ -11,6 +11,7 @@ registers = 'abcdefgxy'
 err = False
 
 def parseCode(self):
+    instCount = 0
     self.codeStatus.setText("Running...")
     pc = 0
     lines = self.codeEdit.document().blockCount()
@@ -124,8 +125,11 @@ def parseCode(self):
 
         elif tokens[0] ==  "stp":
             boxCounter = 4
-            break
-
+            self.codeStatus.setText("Done!")
+            self.stop = True
+        
+        if tokens[0] == 'stp':
+            tokens.append('')
         self.instructionBox.setText(tokens[0] + ' ' + tokens[1])
         boxList[boxCounter].setStyleSheet(
             "QCheckBox::indicator"
@@ -134,17 +138,50 @@ def parseCode(self):
                                "}"
         )
 
+        instCount += 1
+        self.instructionCounter.setText("Step counter:" + str(instCount))
+        QApplication.processEvents()
         if self.stop:
             self.stop = False
             break
-
-        QApplication.processEvents()
         time.sleep(int(self.currentSpeed.text())/1000)
 
 class mainWindow(QtWidgets.QMainWindow, form_class):
     def __init__(self, parent=None):
         QtWidgets.QMainWindow.__init__(self, parent)
         self.setupUi(self)
+        self.instructionCounter.setText("Step counter: 0")
+        #can possibly put this into a stylesheet somehow...
+        self.incBox.setStyleSheet(
+            "QCheckBox::indicator"
+                               "{"
+                               "background-color : white;"
+                               "}"
+        )
+        self.decBox.setStyleSheet(
+            "QCheckBox::indicator"
+                               "{"
+                               "background-color : white;"
+                               "}"
+        )
+        self.iszBox.setStyleSheet(
+            "QCheckBox::indicator"
+                               "{"
+                               "background-color : white;"
+                               "}"
+        )
+        self.jmpBox.setStyleSheet(
+            "QCheckBox::indicator"
+                               "{"
+                               "background-color : white;"
+                               "}"
+        )
+        self.stpBox.setStyleSheet(
+            "QCheckBox::indicator"
+                               "{"
+                               "background-color : white;"
+                               "}"
+        )
 
         self.runButton.clicked.connect(self.start_clicked)
         self.stopButton.clicked.connect(self.stop_clicked)
@@ -170,6 +207,7 @@ class mainWindow(QtWidgets.QMainWindow, form_class):
     
     def stop_clicked(self):
         print('stopping code...')
+        self.codeStatus.setText("Stopped!")
         self.stop = True
     
     def step_clicked(self):

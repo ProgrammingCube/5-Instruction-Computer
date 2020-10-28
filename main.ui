@@ -466,6 +466,19 @@
      <bool>false</bool>
     </property>
    </widget>
+   <widget class="QLabel" name="instructionCounter">
+    <property name="geometry">
+     <rect>
+      <x>510</x>
+      <y>440</y>
+      <width>121</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
