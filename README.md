@@ -1,5 +1,5 @@
 # Python 5 Instruction Computer
-A python implementation of the [WDR paper computer](https://en.wikipedia.org/wiki/WDR_paper_computer "WDR paper computer"){:target="_blank"}
+A python implementation of the [WDR paper computer](https://en.wikipedia.org/wiki/WDR_paper_computer "WDR paper computer")
 
 ## Introduction
 This project is meant to help coders understand just _what_ assembly language is, and just _what_ the CPU is doing under the hood.
