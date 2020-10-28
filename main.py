@@ -58,14 +58,14 @@ def parseCode(self):
             except:
                 self.codeStatus.setText('NONEXISTANT REGISTER')
                 err = True
-                break
+                self.stop = True
             tempreg = regText[reg].text()
             try:
                 tempreg = int(tempreg)
             except:
                 self.codeStatus.setText('NONINT IN REGISTER')
                 err = True
-                break
+                self.stop = True
             tempreg = tempreg + 1
             regText[reg].setText(str(tempreg))
             boxCounter = 0
@@ -77,14 +77,14 @@ def parseCode(self):
             except:
                 self.codeStatus.setText('NONEXISTANT REGISTER')
                 err = True
-                break
+                self.stop = True
             tempreg = regText[reg].text()
             try:
                 tempreg = int(tempreg)
             except:
                 self.codeStatus.setText('NONINT IN REGISTER')
                 err = True
-                break
+                self.stop = True
             tempreg = tempreg - 1
             if tempreg < 0:
                 self.codeStatus.setText('NEGATIVE REGISTER')
@@ -100,7 +100,7 @@ def parseCode(self):
             except:
                 self.codeStatus.setText('NONINT PC')
                 err = True
-                break
+                self.stop = True
             boxCounter = 3
 
         elif tokens[0] ==  "isz":
@@ -109,14 +109,14 @@ def parseCode(self):
             except:
                 self.codeStatus.setText('NONEXISTANT REGISTER')
                 err = True
-                break
+                self.stop = True
             regTest = regText[reg].text()
             try:
                 testReg = int(regTest)
             except:
                 self.codeStatus.setText('NONINT IN REGISTER')
                 err = True
-                break
+                self.stop = True
             if testReg == 0:
                 pc += 2
             else:
@@ -188,6 +188,7 @@ class mainWindow(QtWidgets.QMainWindow, form_class):
         self.stepButton.clicked.connect(self.step_clicked)
         self.speedSlider.setSingleStep(10)
         self.speedSlider.valueChanged[int].connect(self.speedChange)
+        self.actionOpen.triggered.connect(self.openFile)
 
         self.stop = False
 
@@ -215,6 +216,9 @@ class mainWindow(QtWidgets.QMainWindow, form_class):
     
     def speedChange(self, value):
         self.currentSpeed.setText(str(value))
+    
+    def openFile(self):
+        print('Opening file...')
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
