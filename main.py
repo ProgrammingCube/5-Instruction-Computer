@@ -89,7 +89,7 @@ def parseCode(self):
             if tempreg < 0:
                 self.codeStatus.setText('NEGATIVE REGISTER')
                 err = True
-                break
+                self.stop = True
             regText[reg].setText(str(tempreg))
             boxCounter = 1
             pc += 1
