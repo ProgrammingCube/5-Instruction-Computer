@@ -11,6 +11,7 @@ registers = 'abcdefgxy'
 err = False
 
 def parseCode(self):
+    refreshBoxes(self)
     instCount = 0
     self.codeStatus.setText("Running...")
     pc = 0
@@ -146,42 +147,46 @@ def parseCode(self):
             break
         time.sleep(int(self.currentSpeed.text())/1000)
 
+def refreshBoxes(self):
+    self.incBox.setStyleSheet(
+        "QCheckBox::indicator"
+                            "{"
+                            "background-color : white;"
+                            "}"
+    )
+    self.decBox.setStyleSheet(
+        "QCheckBox::indicator"
+                            "{"
+                            "background-color : white;"
+                            "}"
+    )
+    self.iszBox.setStyleSheet(
+        "QCheckBox::indicator"
+                            "{"
+                            "background-color : white;"
+                            "}"
+    )
+    self.jmpBox.setStyleSheet(
+        "QCheckBox::indicator"
+                            "{"
+                            "background-color : white;"
+                            "}"
+    )
+    self.stpBox.setStyleSheet(
+        "QCheckBox::indicator"
+                            "{"
+                            "background-color : white;"
+                            "}"
+    )
+
 class mainWindow(QtWidgets.QMainWindow, form_class):
     def __init__(self, parent=None):
         QtWidgets.QMainWindow.__init__(self, parent)
         self.setupUi(self)
         self.instructionCounter.setText("Step counter: 0")
         #can possibly put this into a stylesheet somehow...
-        self.incBox.setStyleSheet(
-            "QCheckBox::indicator"
-                               "{"
-                               "background-color : white;"
-                               "}"
-        )
-        self.decBox.setStyleSheet(
-            "QCheckBox::indicator"
-                               "{"
-                               "background-color : white;"
-                               "}"
-        )
-        self.iszBox.setStyleSheet(
-            "QCheckBox::indicator"
-                               "{"
-                               "background-color : white;"
-                               "}"
-        )
-        self.jmpBox.setStyleSheet(
-            "QCheckBox::indicator"
-                               "{"
-                               "background-color : white;"
-                               "}"
-        )
-        self.stpBox.setStyleSheet(
-            "QCheckBox::indicator"
-                               "{"
-                               "background-color : white;"
-                               "}"
-        )
+        
+        refreshBoxes(self)
 
         self.runButton.clicked.connect(self.start_clicked)
         self.stopButton.clicked.connect(self.stop_clicked)
