@@ -1,6 +1,6 @@
 import sys, os, time, math
 from PyQt5 import uic, QtCore, QtGui, QtWidgets
-from PyQt5.QtWidgets import QApplication, QWidget, QMainWindow, QPushButton
+from PyQt5.QtWidgets import QApplication, QWidget, QMainWindow, QPushButton, QFileDialog
 from PyQt5.QtGui import QIcon
 from PyQt5.QtCore import QTimer, pyqtSlot
 
@@ -224,6 +224,14 @@ class mainWindow(QtWidgets.QMainWindow, form_class):
     
     def openFile(self):
         print('Opening file...')
+        #home_dir = str(Path.home())
+        #fname = QFileDialog.getOpenFileName(self, 'Open file', home_dir)
+        fname = QFileDialog.getOpenFileName(self, 'Open file', os.path.dirname(os.path.abspath(__file__)))
+        if fname[0]:
+            f = open(fname[0], 'r')
+            with f:
+                data = f.read()
+                self.codeEdit.setText(data)
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
