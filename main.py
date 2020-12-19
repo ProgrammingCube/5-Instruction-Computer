@@ -224,8 +224,6 @@ class mainWindow(QtWidgets.QMainWindow, form_class):
     
     def openFile(self):
         print('Opening file...')
-        #home_dir = str(Path.home())
-        #fname = QFileDialog.getOpenFileName(self, 'Open file', home_dir)
         fname = QFileDialog.getOpenFileName(self, 'Open file', os.path.dirname(os.path.abspath(__file__)))
         if fname[0]:
             f = open(fname[0], 'r')
