@@ -10,6 +10,8 @@ registers = 'abcdefgxy'
 
 err = False
 
+pc = instCount = 0
+
 def parseCode(self):
     refreshBoxes(self)
     instCount = 0
@@ -42,6 +44,7 @@ def parseCode(self):
             pc += 1
             continue
         tokens = currentLine.split()
+        tokens = [element.lower() for element in tokens] ; tokens
         #print(currentLine)
         #parse the opcode.
         #because it is like only 5 instructions,
@@ -179,6 +182,23 @@ def refreshBoxes(self):
                             "}"
     )
 
+#Resets the window
+def resetWindow(self):
+    self.codeStatus.setText('Reset!')
+    refreshBoxes(self)
+    pc = instCount = 0
+    self.instructionBox.setText('')
+    self.instructionCounter.setText("Step counter:" + str(instCount))
+    self.registerAValue.setText('0')
+    self.registerBValue.setText('0')
+    self.registerCValue.setText('0')
+    self.registerDValue.setText('0')
+    self.registerEValue.setText('0')
+    self.registerFValue.setText('0')
+    self.registerXValue.setText('0')
+    self.registerYValue.setText('0')
+    QApplication.processEvents()
+
 class mainWindow(QtWidgets.QMainWindow, form_class):
     def __init__(self, parent=None):
         QtWidgets.QMainWindow.__init__(self, parent)
@@ -191,6 +211,7 @@ class mainWindow(QtWidgets.QMainWindow, form_class):
         self.runButton.clicked.connect(self.start_clicked)
         self.stopButton.clicked.connect(self.stop_clicked)
         self.stepButton.clicked.connect(self.step_clicked)
+        self.resetButton.clicked.connect(self.reset_clicked)
         self.speedSlider.setSingleStep(10)
         self.speedSlider.valueChanged[int].connect(self.speedChange)
         self.actionOpen.triggered.connect(self.openFile)
@@ -211,17 +232,24 @@ class mainWindow(QtWidgets.QMainWindow, form_class):
         if err == True:
             self.codeStatus.setText("Done!")
     
+    @pyqtSlot()
     def stop_clicked(self):
         print('stopping code...')
         self.codeStatus.setText("Stopped!")
         self.stop = True
     
+    @pyqtSlot()
     def step_clicked(self):
         print('Stepping...')
     
     def speedChange(self, value):
         self.currentSpeed.setText(str(value))
     
+    @pyqtSlot()
+    def reset_clicked(self):
+        print('reset clicked...')
+        resetWindow(self)
+
     def openFile(self):
         print('Opening file...')
         fname = QFileDialog.getOpenFileName(self, 'Open file', os.path.dirname(os.path.abspath(__file__)))
