@@ -24,11 +24,11 @@ Now you can clone this repository and start programming!
 
 ## Instructions
 
-1. [inc](#incdescriptor)
-1. [dec](#decdescriptor)
-1. [isz](#iszdescriptor)
-1. [jmp](#jmpdescriptor)
-1. [stp](#stpdescriptor)
+1. [inc](#inc)
+1. [dec](#dec)
+1. [isz](#isz)
+1. [jmp](#jmp)
+1. [stp](#stp)
 
 ## Theory
 
