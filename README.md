@@ -32,7 +32,7 @@ Now you can clone this repository and start programming!
 
 ## Theory
 
-The idea of the WDR-1 computer is that is a very simple system to learn the theory of computing on. The idea of a Turing machine is the ability to conditionally branch code and, by extension, change data conditionally. With this ability, one is able to solve any algorithm in this universe...given enough time, space, and brainpower.
+The idea of the WDR paper computer is that is a very simple system to learn the theory of computing on. The idea of a Turing machine is the ability to conditionally branch code and, by extension, change data conditionally. With this ability, one is able to solve any algorithm in this universe...given enough time, space, and brainpower.
 
 
 ## Instructions
